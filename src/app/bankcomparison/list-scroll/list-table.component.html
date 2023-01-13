@@ -1,0 +1,155 @@
+<div class="h-full min-w-full mx-auto mt-10">
+    <div class="flex flex-col mt-20">
+        <div class="sm:rounded-lg overflow-y-scroll max-h-[80vh] shadow-md">
+            <div class="inline-block min-w-full align-middle">
+                <div class="overflow-hidden">
+                    <table
+                        class="dark:divide-gray-700 drop-shadow-2xl justify-center min-w-full align-middle divide-y divide-gray-200 table-auto"
+                    >
+                        <thead class="dark:bg-zinc-800 bg-zinc-700 shadow-lg">
+                            <tr class="text-center">
+                                <th scope="col" class="flex-col justify-center p-4">
+                                    <div class="flex items-center">
+                                        <input
+                                            id="checkbox-all"
+                                            type="checkbox"
+                                            class="focus:ring-amber-500 dark:focus:ring-amber-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-zinc-600 dark:border-gray-600 text-amber-500 bg-zinc-800 w-4 h-4 rounded"
+                                        />
+                                        <label
+                                            (click)="checkAllBoxes()"
+                                            class="sr-only"
+                                            >checkbox</label
+                                        >
+                                    </div>
+                                </th>
+                                <th 
+                                    scope="col"
+                                    class="dark:text-gray-300 flex flex-row justify-center px-3 py-6 text-xs font-medium tracking-wider text-center text-white uppercase align-middle"
+                                >
+                                    <span class="flex justify-center text-center">Check #</span>
+                                </th>
+                                <th
+                                    scope="col"
+                                    class="dark:text-gray-300 justify-center px-3 py-6 text-xs font-medium tracking-wider text-center text-white uppercase align-middle"
+                                >
+							<span class="flex justify-center text-center">Transaction</span>
+                                </th>
+                                <th
+                                    scope="col"
+                                    class="dark:text-gray-300 px-6 py-3 text-xs font-medium tracking-wider text-center text-white uppercase"
+                                >
+							<span class="flex justify-center text-center">Amount</span>
+                                </th>
+                                <th
+                                    scope="col"
+                                    class="dark:text-gray-300 px-6 py-3 text-xs font-medium tracking-wider text-center text-white uppercase"
+                                >
+							<span class="flex justify-center text-center">Date</span>
+                                </th>
+                                <th
+                                    scope="col"
+                                    class="dark:text-gray-300 px-6 py-3 text-xs font-medium tracking-wider text-center text-white uppercase"
+                                >
+							<span class="flex justify-center text-center">Check #2</span>
+                                </th>
+                                <th
+                                    scope="col"
+                                    class="dark:text-gray-300 px-6 py-3 text-xs font-medium tracking-wider text-center text-white uppercase"
+                                >
+							<span class="flex justify-center text-center">Transaction #2</span>
+                                </th>
+                                <th
+                                    scope="col"
+                                    class="dark:text-gray-400 px-6 py-3 text-xs font-medium tracking-wider text-center text-white uppercase"
+                                >
+							<span class="flex justify-center text-center">amount #2</span>
+                                </th>
+                                <th
+                                    scope="col"
+                                    class="dark:text-gray-300 px-6 py-3 text-xs font-medium tracking-wider text-center text-white uppercase"
+                                >
+							<span class="flex justify-center text-center">Date #2</span>
+                                </th>
+                                <th scope="col" class="p-4">
+                                    <a
+                                        class="editable button"
+                                        (click)="editLine()"
+                                    >
+                                        <span class="sr-only">Edit</span>
+                                    </a>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody
+                            class="dark:bg-neutral-800 dark:divide-neutral-800 bg-zinc-800 divide-y divide-gray-200"
+                        >
+                            <tr
+                                class="hover:bg-gray-100 dark:hover:bg-gray-700"
+                                *ngFor="let data of this.data"
+                                (click)="onRowClick(data.checknumberID)"
+                            >
+                                <td class="w-4 p-4">
+                                    <div class="flex items-center">
+                                        <input
+                                            id="checkbox-table-1"
+                                            type="checkbox"
+                                            class="focus:ring-neutral-500 dark:focus:ring-zinc-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-zinc-700 dark:border-gray-600 text-neutral-600 border-zinc-800 w-4 h-4 bg-gray-100 rounded"
+                                        />
+                                        <label
+                                            for="checkbox-table-1"
+                                            class="sr-only"
+                                            >checkbox</label
+                                        >
+                                    </div>
+                                </td>
+                                <td
+                                    class="whitespace-nowrap dark:text-lime-400 text-lime-400 px-6 py-4 text-sm font-medium"
+                                >
+                                    {{ data.checknumberID }}
+                                </td>
+                                <td
+                                    class="whitespace-nowrap dark:text-white px-6 py-4 text-sm font-medium text-gray-500"
+                                >
+                                    {{ data.transaction }}
+                                </td>
+                                <td
+                                    class="whitespace-nowrap dark:text-amber-300 px-6 py-4 text-sm font-medium text-gray-900"
+                                >
+                                    {{ data.amount }}
+                                </td>
+                                <td
+                                    class="whitespace-nowrap dark:text-blue-400 px-6 py-4 text-sm font-medium text-gray-500"
+                                >
+                                    {{ data.date }}
+                                </td>
+                                <td
+                                    class="whitespace-nowrap dark:text-lime-400 px-6 py-4 text-sm font-medium text-gray-900"
+                                >
+                                    {{ data.checknumberID2 }}
+                                </td>
+                                <td
+                                    class="whitespace-nowrap dark:text-white px-6 py-4 text-sm font-medium text-gray-900"
+                                >
+                                    {{ data.transaction2 }}
+                                </td>
+                                <td
+                                    class="whitespace-nowrap dark:text-amber-300 px-6 py-4 text-sm font-medium text-gray-900"
+                                >
+                                    {{ data.amount2 }}
+                                </td>
+                                <td
+                                    class="whitespace-nowrap dark:text-blue-400 px-6 py-4 text-sm font-medium text-gray-900"
+                                >
+                                    {{ data.date2 }}
+                                </td>
+                                <td
+                                    class="whitespace-nowrap px-6 py-4 text-sm font-medium text-right"
+                                ></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
