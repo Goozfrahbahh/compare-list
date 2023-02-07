@@ -86,7 +86,7 @@
                             <tr
                                 class="hover:bg-gray-100 dark:hover:bg-gray-700"
                                 *ngFor="let data of this.data"
-                                (click)="onRowClick(data.checknumberID)"
+                                (click)="onRowClick(data.checknumber)"
                             >
                                 <td class="w-4 p-4">
                                     <div class="flex items-center">
@@ -105,7 +105,7 @@
                                 <td
                                     class="whitespace-nowrap dark:text-lime-400 text-lime-400 px-6 py-4 text-sm font-medium"
                                 >
-                                    {{ data.checknumberID }}
+                                    {{ data.checknumber }}
                                 </td>
                                 <td
                                     class="whitespace-nowrap dark:text-white px-6 py-4 text-sm font-medium text-gray-500"
@@ -125,7 +125,7 @@
                                 <td
                                     class="whitespace-nowrap dark:text-lime-400 px-6 py-4 text-sm font-medium text-gray-900"
                                 >
-                                    {{ data.checknumberID2 }}
+                                    {{ data.checknumber2 }}
                                 </td>
                                 <td
                                     class="whitespace-nowrap dark:text-white px-6 py-4 text-sm font-medium text-gray-900"

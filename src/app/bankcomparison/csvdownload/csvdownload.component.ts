@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DataStoreService } from '../../shared/services/data.service';
+import { StoreService } from '../../shared/services/store.service';
 
 @Component({
     selector: 'app-csvdownload',
@@ -7,13 +8,29 @@ import { DataStoreService } from '../../shared/services/data.service';
     styleUrls: ['./csvdownload.component.scss'],
 })
 export class CsvDownloadComponent {
+	csvData: any;
+	csvData2: any;
 
-	constructor(private dataStore: DataStoreService) { }
-    set csvData(data: any) {
-		this.csvData = data;
-    }
+	constructor(private dataStore: DataStoreService,
+					private storeService: StoreService) { }
+
+	ngOnInit() {
+		this.storeService.downloads1$.subscribe(
+            (data: any) => (this.csvData = data)
+        );
+        this.storeService.downloads2$.subscribe(
+            (data: any) => (this.csvData2 = data)
+        )
+	   }
     download() {
         const newData = this.csvData
+            .filter((e: any, i: any) => i !== 0)
+            .map((e: any) => {
+                return Object.keys(e).reduce((acc, curr) => {
+                    return { ...acc, ...{ [curr]: '"' + e[curr] + '"' } };
+                }, {});
+            });
+        const newData2 = this.csvData2
             .filter((e: any, i: any) => i !== 0)
             .map((e: any) => {
                 return Object.keys(e).reduce((acc, curr) => {
@@ -23,7 +40,8 @@ export class CsvDownloadComponent {
 
         console.log('newdata', this.csvData, [this.csvData['0'], ...newData]);
 
-        this.exportFile(newData, 'Matched Data');
+        this.exportFile(newData, 'UnMatched Data');
+	   this.exportFile(newData2, 'UnMatched Data2')
     }
 
     exportFile(rows: any, fileTitle?: any) {

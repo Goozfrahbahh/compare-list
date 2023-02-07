@@ -1,9 +1,9 @@
 export interface Csv {
-	checknumberID: string;
+	checknumber: string;
 	transaction: string;
 	amount: string;
 	date: string;
-    checknumberID2: string,
+    checknumber2: string,
     transaction2: string,
     amount2: string,
     date2: string,

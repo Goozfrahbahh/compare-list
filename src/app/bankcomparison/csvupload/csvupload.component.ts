@@ -4,6 +4,7 @@ import { CsvCompareService } from '../../shared/services/csv-compare.service';
 import { Csv} from '../../shared/models/csv'
 import { TitleStrategy } from '@angular/router';
 import { NgxCsvParser } from '../../shared/services/csv-parse.service';
+import { StoreService } from '../../shared/services/store.service';
 
 @Component({
     selector: 'app-csvupload',
@@ -58,12 +59,14 @@ export class CsvParserComponent implements OnInit {
     filesInput: BehaviorSubject<any> = new BehaviorSubject(1);
     header: boolean = true;
     data: Csv[] = [];
+    dataCopy: Csv[] = [];
     data2: Csv[] = [];
 
     csvdata$ = this.replaycsv.asObservable();
 
     constructor(private csvCompareService: CsvCompareService,
-				     private csvParser: NgxCsvParser) {}
+				     private csvParser: NgxCsvParser,
+					private storeService: StoreService) {}
 
     ngOnInit(): void {
 		console.log("this.csvdata$ | async")
@@ -81,7 +84,7 @@ export class CsvParserComponent implements OnInit {
            .parse(files[0], { header: this.header, delimiter: ',' })
            .pipe(
                map((result) => (result = result)),
-               tap((result: any) => console.log(result)),
+               tap((result: any) => this.storeService.setData(result)),
 
                catchError(
                    this.handleError(
@@ -95,12 +98,9 @@ export class CsvParserComponent implements OnInit {
 	   const record = csvRecords.pipe(
 			switchMap((results: Observable<Csv[]>) => this.csvCompareService.buildCompareData(results)
 			),
-			map((data: any) => this.data.push(data))
+			map((data: any) => this.data.push(data)),
 			).subscribe()
-	
-		
-
-               
+        console.log(this.data) 
 	   this.isUploaded = true;
 	   
     }

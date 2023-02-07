@@ -2,6 +2,7 @@ import { Component, ElementRef, Input, OnInit, TemplateRef } from '@angular/core
 import { Csv } from '../../shared/models/csv';
 import { CsvCompareService } from '../../shared/services/csv-compare.service';
 import { DataStoreService } from '../../shared/services/data.service';
+import { StoreService } from '../../shared/services/store.service';
 
 @Component({
     selector: 'app-list-table',
@@ -11,8 +12,12 @@ export class ListTableComponent implements OnInit {
 	@Input() data: Csv[] = [];
     constructor(private elementRef: ElementRef,
 					 private csvCompareService: CsvCompareService,
-					private dataStore: DataStoreService) {}
-    ngOnInit() {}
+					private dataStore: DataStoreService,
+					private storeService: StoreService) {}
+    ngOnInit() {
+	  console.log(this.data)
+
+    }
     editLine(): void {
 	   return console.log('edit')
     }

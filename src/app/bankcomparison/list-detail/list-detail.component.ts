@@ -24,7 +24,7 @@ export class ListDetailComponent implements OnInit{
 	}
 
 	goToItem(item: Csv) {
-		const itemId = item ? item.checknumberID : null;
+		const itemId = item ? item.checknumber : null;
 
 		this.router.navigate(['/compare/', { checknumberID: itemId, meta: 'edited' }]);
 	}

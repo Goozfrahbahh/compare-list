@@ -19,7 +19,7 @@ export class CsvCompareService {
     statementSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false)
     statement$ = this.statementSubject.asObservable();
     statement1Subject: BehaviorSubject<any> = new BehaviorSubject<Statement[]>(this.statement1)
-    statement2Subject: BehaviorSubject<any> = new BehaviorSubject<Statement[]>(this.statement2)
+    statement2Subject: BehaviorSubject<any> = new BehaviorSubject<Statement[]>(this.statement1)
     constructor(
         private ngxCsvParser: NgxCsvParser,
         private dataStoreService: DataStoreService
